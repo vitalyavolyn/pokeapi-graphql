@@ -1,0 +1,47 @@
+type EvolutionChain {
+  id: Int
+  babyTriggerItem: Item
+  chain: ChainLink
+}
+
+type ChainLink {
+  isBaby: Boolean
+  species: PokemonSpecies
+  evolutionDetails: [EvolutionDetail]
+  evolvesTo: [ChainLink]
+}
+
+type EvolutionDetail {
+  item: Item
+  trigger: EvolutionTrigger
+  gender: Int
+  heldItem: Item
+  knownMove: Move
+  knownMoveType: Type
+  location: Location
+  minLevel: Int
+  minHappiness: Int
+  minBeauty: Int
+  minAffection: Int
+  needsOvervorldRain: Boolean
+  partySpecies: PokemonSpecies
+  partyType: Type
+  relativePhysicalStats: Int
+  timeOfDay: String
+  tradeSpecies: PokemonSpecies
+  turnUpsideDown: Boolean
+}
+
+type EvolutionTrigger {
+  id: Int
+  name: String
+  names: [Name]
+  pokemonSpecies: [PokemonSpecies]
+}
+
+type Query {
+  evolutionChains: [EvolutionChain]
+  evolutionChain(id: Int): EvolutionChain
+  evolutionTriggers: [EvolutionTrigger]
+  evolutionTrigger(id: Int): EvolutionTrigger
+}

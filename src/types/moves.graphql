@@ -1,0 +1,116 @@
+type Move {
+  id: Int
+  name: String
+  accuracy: Int
+  effectChance: Int
+  pp: Int
+  priority: Int
+  power: Int
+  contestCombos: ContestComboSets
+  contestType: ContestType
+  contestEffect: ContestEffect
+  damageClass: MoveDamageClass
+  effectEntries: [VerboseEffect]
+  effectChanges: [AbilityEffectChange]
+  flavorTextEntries: [MoveFlavorText]
+  generation: Generation
+  machines: [MachineVersionDetail]
+  meta: MoveMetaData
+  names: [Name]
+  pastValues: [PastMoveStatValues]
+  statChanges: [MoveStatChange]
+  superContestEffect: SuperContestEffect
+  target: MoveTarget
+  type: Type
+}
+
+type PastMoveStatValues {
+  accuracy: Int
+  effectChance: Int
+  power: Int
+  pp: Int
+  effectEntries: [VerboseEffect]
+  type: Type
+  versionGroup: VersionGroup
+}
+
+type MoveStatChange {
+  change: Int
+  stat: Stat
+}
+
+type MoveMetaData {
+  ailment: MoveAilment
+  category: MoveCategory
+  minHits: Int
+  maxHits: Int
+  minTurns: Int
+  maxTurns: Int
+  drain: Int
+  healing: Int
+  critRate: Int
+  ailmentChance: Int
+  flinchChance: Int
+  statChance: Int
+}
+
+type MoveAilment {
+  id: Int
+  name: String
+  moves: [Move]
+  names: [Name]
+}
+
+type MoveCategory {
+  id: Int
+  name: String
+  moves: [Move]
+  descriptions: [Description]
+}
+
+type MoveTarget {
+  id: Int
+  name: String
+  descriptions: [Description]
+  moves: [Move]
+  names: [Name]
+}
+
+type MoveLearnMethod {
+  id: Int
+  name: String
+  descriptions: [Description]
+  names: [Name]
+  versionGroups: [VersionGroup]
+}
+
+type MoveDamageClass {
+  id: Int
+  name: String
+  descriptions: [Description]
+  moves: [Move]
+  names: [Name]
+}
+
+type MoveBattleStyle {
+  id: Int
+  name: String
+  names: [Name]
+}
+
+type Query {
+  moves: [Move]
+  move(id: String): Move
+  moveAilments: [MoveAilment]
+  moveAilment(id: Int): MoveAilment
+  moveBattleStyles: [MoveBattleStyle]
+  moveBattleStyle(id: Int): MoveBattleStyle
+  moveCategories: [MoveCategory]
+  moveCategory(id: Int): MoveCategory
+  moveDamageClasses: [MoveDamageClass]
+  moveDamageClass(id: Int): MoveDamageClass
+  moveLearnMethods: [MoveLearnMethod]
+  moveLearnMethod(id: Int): MoveLearnMethod
+  moveTargets: [MoveTarget]
+  moveTarget(id: Int): MoveTarget
+}

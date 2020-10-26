@@ -1,0 +1,203 @@
+type Pokemon {
+  id: Int
+  name: String
+  baseExperience: Int
+  isDefault: Int
+  order: Int
+  height: Int
+  weight: Int
+  abilities: [PokemonAbility]
+  forms: [PokemonForm]
+  gameIndices: [VersionGameIndex]
+  heldItems: [PokemonHeldItem]
+  locationAreaEncounters: [LocationAreaEncounter]
+  moves: [PokemonMove]
+  sprites: PokemonSprites
+  species: PokemonSpecies
+  stats: [PokemonStat]
+  types: [Type]
+}
+
+type PokemonSprites {
+  frontDefault: String
+  frontShiny: String
+  frontFemale: String
+  frontShinyFemale: String
+  backDefault: String
+  backShiny: String
+  backFemale: String
+  backShinyFemale: String
+}
+
+type PokemonAbility {
+  isHidden: Boolean
+  slot: Int
+  ability: Ability
+}
+
+type PokemonMove {
+  move: Move
+  versionGroupDetails: [PokemonMoveVersion]
+}
+
+type PokemonStat {
+  stat: Stat
+  effort: Int
+  baseStat: Int
+}
+
+type PokemonHeldItem {
+  item: Item
+  versionDetails: [PokemonHeldItemVersion]
+}
+
+type PokemonHeldItemVersion {
+  version: Version
+  rarity: Int
+}
+
+type PokemonSpecies {
+  id: Int
+  name: String
+  order: Int
+  genderRate: Int
+  captureRate: Int
+  baseHappiness: Int
+  isBaby: Boolean
+  isLegendary: Boolean
+  isMythical: Boolean
+  hatchCounter: Int
+  hasGenderDifferences: Boolean
+  formsSwitchable: Boolean
+  growthRate: GrowthRate
+  pokedexNumbers: [PokemonSpeciesDexEntry]
+  eggGroups: [EggGroup]
+  color: PokemonColor
+  shape: PokemonShape
+  evolvesFromSpecies: PokemonSpecies
+  evolutionChain: EvolutionChain
+  habitat: PokemonHabitat
+  generation: Generation
+  names: [Name]
+  palParkEncounters: [PalParkEncounterArea]
+  flavorTextEntries: [FlavorText]
+  formDescriptions: [Description]
+  genera: [Genus]
+  varieties: [PokemonSpeciesVariety]
+}
+
+type PokemonSpeciesDexEntry {
+  entryNumber: Int
+  pokedex: Pokedex
+}
+
+type Genus {
+  genus: String
+  language: Language
+}
+
+type PokemonSpeciesVariety {
+  isDefault: Boolean
+  pokemon: Pokemon
+}
+
+type PokemonMoveVersion {
+  levelLearnedAt: Int
+  versionGroup: VersionGroup
+  moveLearnMethod: MoveLearnMethod
+}
+
+type PokemonForm {
+  id: Int
+  name: String
+  order: Int
+  formOrder: Int
+  isDefault: Boolean
+  isBattleOnly: Boolean
+  isMega: Boolean
+  formName: String
+  sprites: PokemonFormSprites
+  versionGroup: VersionGroup
+  formNames: [Name]
+  names: [Name]
+}
+
+type PokemonFormSprites {
+  frontDefault: String
+  frontShiny: String
+  backDefault: String
+  backShiny: String
+}
+
+type PalParkEncounterArea {
+  baseScore: Int
+  rate: Int
+  area: PalParkArea
+}
+
+type LocationAreaEncounter { # TODO: MISSING RESOLVER?
+  locationArea: LocationArea
+  versionDetails: [VersionEncounterDetail]
+}
+
+type EggGroup {
+  id: Int
+  name: String
+  names: [Name]
+  pokemonSpecies: [PokemonSpecies]
+}
+
+type PokemonColor {
+  id: Int
+  name: String
+  names: [Name]
+  pokemonSpecies: [PokemonSpecies]
+}
+
+type PokemonHabitat {
+  id: Int
+  name: String
+  names: [Name]
+  pokemonSpecies: [PokemonSpecies]
+}
+
+type GrowthRate {
+  id: Int
+  name: String
+  formula: String
+  description: [Description]
+  levels: [GrowthRateExperienceLevel],
+  pokemonSpecies: [PokemonSpecies]
+}
+
+type GrowthRateExperienceLevel {
+  level: Int
+  experience: Int
+}
+
+type PokemonShape {
+  id: Int
+  name: String
+  awesomeNames: [AwesomeName]
+  names: [Name]
+  pokemonSpecies: [PokemonSpecies]
+}
+
+type Query {
+  eggGroups: [EggGroup]
+  eggGroup(id: Int): EggGroup
+  growthRates: [GrowthRate]
+  growthRate(id: Int): GrowthRate
+  allPokemon: [Pokemon]
+  pokemon(id: String): Pokemon
+  pokemonColors: [PokemonColor]
+  pokemonColor(id: Int): PokemonColor
+  pokemonForms: [PokemonForm]
+  pokemonForm(id: String): PokemonForm
+  pokemonHabitats: [PokemonHabitat]
+  pokemonHabitat(id: Int): PokemonHabitat
+  pokemonShapes: [PokemonShape]
+  pokemonShape(id: Int): PokemonShape
+  allPokemonSpecies: [PokemonSpecies]
+  pokemonSpecies(id: Int): PokemonSpecies
+}

@@ -1,0 +1,30 @@
+type Type {
+  id: Int
+  name: String
+  damageRelations: TypeRelations
+  gameIndices: [GenerationGameIndex]
+  generation: Generation
+  moveDamageClass: MoveDamageClass
+  names: [Name]
+  pokemon: [TypePokemon]
+  moves: [Move]
+}
+
+type TypePokemon {
+  slot: Int
+  pokemon: Pokemon
+}
+
+type TypeRelations {
+  noDamageTo: [Type]
+  halfDamageTo: [Type]
+  doubleDamageTo: [Type]
+  noDamageFrom: [Type]
+  halfDamageFrom: [Type]
+  doubleDamageFrom: [Type]
+}
+
+type Query {
+  types: [Type]
+  type(id: String): Type
+}

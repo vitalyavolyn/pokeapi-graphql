@@ -1,0 +1,22 @@
+type Ability {
+  id: Int
+  name: String
+  isMainSeries: Boolean
+  generation: Generation
+  names: [Name]
+  effectEntries: [VerboseEffect]
+  effectChanges: [AbilityEffectChange]
+  flavorTextEntries: [AbilityFlavorText]
+  pokemon: [AbilityPokemon]
+}
+
+type AbilityPokemon {
+  isHidden: Boolean
+  slot: Int
+  pokemon: Pokemon
+}
+
+type Query {
+  abilities: [Ability]
+  ability(id: Int): Ability
+}

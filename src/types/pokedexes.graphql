@@ -1,0 +1,20 @@
+type Pokedex {
+  id: Int
+  name: String
+  isMainSeries: Boolean
+  descriptions: [Description]
+  names: [Name]
+  pokemonEntries: [PokemonEntry]
+  region: Region
+  versionGroups: [VersionGroup]
+}
+
+type PokemonEntry {
+  entryNumber: Int
+  pokemonSpecies: PokemonSpecies
+}
+
+type Query {
+  pokedexes: [Pokedex]
+  pokedex(id: Int): Pokedex
+}

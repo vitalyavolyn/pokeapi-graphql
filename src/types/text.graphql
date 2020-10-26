@@ -1,0 +1,74 @@
+type Name {
+  name: String
+  language: Language
+}
+
+type Language {
+  id: Int
+  name: String
+  official: Boolean
+  iso639: String
+  iso3166: String
+  names: [Name]
+}
+
+type Description {
+  description: String
+  language: Language
+}
+
+type FlavorText {
+  flavorText: String
+  language: Language
+  version: Version
+}
+
+type VerboseEffect {
+  effect: String
+  shortEffect: String
+  language: Language
+}
+
+type VersionGroupFlavorText {
+  text: String
+  language: Language
+  versionGroup: VersionGroup
+}
+
+type Effect {
+  effect: String
+  language: Language
+}
+
+type AbilityEffectChange {
+  effectEntries: [Effect]
+  versionGroup: VersionGroup
+}
+
+type AbilityFlavorText {
+  flavorText: String
+  language: Language
+  versionGroup: VersionGroup
+}
+
+type MoveFlavorText {
+  flavorText: String
+  language: Language
+  versionGroup: VersionGroup
+}
+
+type AwesomeName {
+  awesomeName: String
+  language: Language
+}
+
+type ContestName {
+  name: String
+  color: String
+  language: Language
+}
+
+type Query {
+  languages: [Language]
+  language(id: Int): Language
+}

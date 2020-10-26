@@ -1,0 +1,89 @@
+type Item {
+  id: Int
+  name: String
+  cost: Int
+  flingPower: Int
+  flingEffect: ItemFlingEffect
+  attributes: [ItemAttribute]
+  category: ItemCategory
+  effectEntries: [VerboseEffect]
+  flavorTextEntries: [VersionGroupFlavorText]
+  gameIndices: [GenerationGameIndex]
+  names: [Name]
+  sprites: ItemSprites
+  heldByPokemon: [ItemHolderPokemon]
+  babyTriggerFor: EvolutionChain
+  machines: [MachineVersionDetail]
+}
+
+type ItemAttribute {
+  id: Int
+  name: String
+  items: [Item]
+  names: [Name]
+  descriptions: [Description]
+}
+
+type ItemFlingEffect {
+  id: Int
+  name: String
+  effectEntries: [Effect]
+  items: [Item]
+}
+
+# TODO: Maybe remove this and just return string?
+type ItemSprites {
+  default: String
+}
+
+type ItemHolderPokemon {
+  pokemon: Pokemon
+  versionDetails: [ItemHolderPokemonVersionDetail]
+}
+
+type ItemHolderPokemonVersionDetail {
+  rarity: Int
+  version: Version
+}
+
+type MachineVersionDetail {
+  machine: Machine
+  versionGroup: VersionGroup
+}
+
+type Machine {
+  id: Int
+  item: Item
+  move: Move
+  versionGroup: VersionGroup
+}
+
+type ItemCategory {
+  id: Int
+  name: String
+  items: [Item]
+  names: [Name]
+  pocket: ItemPocket
+}
+
+type ItemPocket {
+  id: Int
+  name: String
+  categories: [ItemCategory]
+  names: [Name]
+}
+
+type Query {
+  items: [Item]
+  item(id: Int): Item
+  itemCategories: [ItemCategory]
+  itemCategory(id: Int): ItemCategory
+  itemAttributes: [ItemAttribute]
+  itemAttribute(id: Int): ItemAttribute
+  itemFlingEffects: [ItemFlingEffect]
+  itemFlingEffect(id: Int): ItemFlingEffect
+  itemPockets: [ItemPocket]
+  itemPocket(id: Int): ItemPocket
+  machines: [Machine]
+  machine(id: Int): Machine
+}

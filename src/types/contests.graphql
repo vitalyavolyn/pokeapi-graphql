@@ -1,0 +1,40 @@
+type ContestType {
+  id: Int
+  name: String
+  berryFlavor: BerryFlavor
+  names: [ContestName]
+}
+
+type ContestEffect {
+  id: Int
+  appeal: Int
+  jam: Int
+  effectEntries: [Effect]
+  flavorTextEntries: [FlavorText]
+}
+
+type SuperContestEffect {
+  id: Int
+  appeal: Int
+  flavorTextEntries: [FlavorText]
+  moves: [Move]
+}
+
+type ContestComboSets {
+  normal: ContestComboDetail
+  super: ContestComboDetail
+}
+
+type ContestComboDetail {
+  useBefore: [Move]
+  useAfter: [Move]
+}
+
+type Query {
+  contestTypes: [ContestType]
+  contestType(id: Int): ContestType
+  contestEffects: [ContestEffect]
+  contestEffect(id: Int): ContestEffect
+  superContestEffects: [SuperContestEffect]
+  superContestEffect(id: Int): SuperContestEffect
+}

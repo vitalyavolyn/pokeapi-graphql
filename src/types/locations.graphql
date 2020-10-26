@@ -1,0 +1,52 @@
+type Region {
+  id: Int
+  locations: [Location]
+  name: String
+  names: [Name]
+  mainGeneration: Generation
+  pokedexes: [Pokedex]
+  versionGroups: [VersionGroup]
+}
+
+type Location {
+  id: Int
+  name: String
+  region: Region
+  names: [Name]
+  gameIndices: [GenerationGameIndex]
+  areas: [LocationArea]
+}
+
+type LocationArea {
+  id: Int
+  name: String
+  gameIndex: Int
+  encounterMethodRates: [EncounterMethodRate]
+  location: Location
+  names: [Name]
+  pokemonEncounters: [PokemonEncounter]
+}
+
+type PalParkArea {
+  id: Int
+  name: String
+  names: [Name]
+  pokemonEncounters: [PalParkEncounterSpecies]
+}
+
+type PalParkEncounterSpecies {
+  baseScore: Int
+  rate: Int
+  pokemonSpecies: PokemonSpecies
+}
+
+type Query {
+  regions: [Region]
+  region(id: Int): Region
+  locations: [Location]
+  location(id: Int): Location
+  locationAreas: [LocationArea]
+  locationArea(id: Int): LocationArea
+  palParkAreas: [PalParkArea]
+  palParkArea(id: Int): PalParkArea
+}

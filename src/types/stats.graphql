@@ -1,0 +1,85 @@
+type Stat {
+  id: Int
+  name: String
+  gameIndex: Int
+  isBattleOnly: Boolean
+  affectingMoves: MoveStatAffectSets
+  affectingNatures: NatureStatAffectSets
+  characteristics: [Characteristic]
+  moveDamageClass: MoveDamageClass
+  names: [Name]
+}
+
+type Characteristic {
+  id: Int
+  geneModulo: Int
+  possibleValues: [Int]
+  highestStat: Stat
+  descriptions: [Description]
+}
+
+type MoveStatAffectSets {
+  increase: [MoveStatAffect]
+  decrease: [MoveStatAffect]
+}
+
+type MoveStatAffect {
+  change: Int
+  move: Move
+}
+
+type Nature {
+  id: Int
+  name: String
+  decreasedStat: Stat
+  increasedStat: Stat
+  hatesFlavor: BerryFlavor
+  likesFlavor: BerryFlavor
+  pokeathlonStatChanges: [NatureStatChange]
+  moveBattleStylePreferences: [MoveBattleStylePreference]
+  names: [Name]
+}
+
+type MoveBattleStylePreference {
+  lowHpPreference: Int
+  highHpPreference: Int
+  moveBattleStyle: MoveBattleStyle
+}
+
+type NatureStatChange {
+  maxChange: Int
+  pokeathlonStat: PokeathlonStat
+}
+
+type NatureStatAffectSets {
+  increase: [Nature]
+  decrease: [Nature]
+}
+
+type PokeathlonStat {
+  id: Int
+  name: String
+  names: [Name]
+  affectingNatures: NaturePokeathlonStatAffectSets
+}
+
+type NaturePokeathlonStatAffectSets {
+  increase: [NaturePokeathlonStatAffect]
+  decrease: [NaturePokeathlonStatAffect]
+}
+
+type NaturePokeathlonStatAffect {
+  maxChange: Int
+  nature: Nature
+}
+
+type Query {
+  characteristics: [Characteristic]
+  characteristic(id: Int): Characteristic
+  natures: [Nature]
+  nature(id: Int): Nature
+  stats: [Stat]
+  stat(id: Int): Stat
+  pokeathlonStats: [PokeathlonStat]
+  pokeathlonStat(id: Int): PokeathlonStat
+}

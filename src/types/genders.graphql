@@ -1,0 +1,16 @@
+type Gender {
+  id: Int
+  name: String
+  pokemonSpeciesDetails: [PokemonSpeciesGender]
+  requiredForEvolution: [PokemonSpecies]
+}
+
+type PokemonSpeciesGender {
+  rate: Int
+  pokemonSpecies: PokemonSpecies
+}
+
+type Query {
+  genders: [Gender]
+  gender(id: Int): Gender
+}

@@ -1,0 +1,48 @@
+type Berry {
+  id: Int
+  name: String
+  growthTime: Int
+  maxHarvest: Int
+  naturalGiftPower: Int
+  size: Int
+  smoothness: Int
+  soilDryness: Int
+  firmness: BerryFirmness
+  flavors: [BerryFlavorMap]
+  item: Item
+  naturalGiftType: Type
+}
+
+type BerryFirmness {
+  id: Int
+  name: String
+  berries: [Berry]
+  names: [Name]
+}
+
+type BerryFlavorMap {
+  potency: Int
+  flavor: BerryFlavor
+}
+
+type BerryFlavor {
+  id: Int
+  name: String
+  berries: [FlavorBerryMap]
+  contestType: ContestType
+  names: [Name]
+}
+
+type FlavorBerryMap {
+  potency: Int
+  berry: Berry
+}
+
+type Query {
+  berries: [Berry]
+  berry(id: Int): Berry
+  berryFirmnesses: [BerryFirmness]
+  berryFirmness(id: Int): BerryFirmness
+  berryFlavors: [BerryFlavor]
+  berryFlavor(id: Int): BerryFlavor
+}

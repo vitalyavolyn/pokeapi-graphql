@@ -1,0 +1,48 @@
+type Version {
+  id: Int
+  name: String
+  names: [Name]
+  versionGroup: VersionGroup
+}
+
+type VersionGroup {
+  id: Int
+  name: String
+  order: Int
+  generation: Generation
+  moveLearnMethods: [MoveLearnMethod]
+  pokedexes: [Pokedex]
+  regions: [Region]
+  versions: [Version]
+}
+
+type Generation {
+  id: Int
+  name: String
+  abilities: [Ability]
+  names: [Name]
+  mainRegion: Region
+  moves: [Move]
+  pokemonSpecies: [PokemonSpecies]
+  types: [Type]
+  versionGroups: [VersionGroup]
+}
+
+type GenerationGameIndex {
+  gameIndex: Int
+  generation: Generation
+}
+
+type VersionGameIndex {
+  gameIndex: Int
+  version: Version
+}
+
+type Query {
+  versions: [Version]
+  version(id: Int): Version
+  generations: [Generation]
+  generation(id: Int): Generation
+  versionGroups: [VersionGroup]
+  versionGroup(id: Int): VersionGroup
+}

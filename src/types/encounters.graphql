@@ -1,0 +1,58 @@
+type EncounterMethodRate {
+  encounterMethod: EncounterMethod
+  versionDetails: [EncounterVersionDetails]
+}
+
+type EncounterMethod {
+  id: Int
+  name: String
+  order: Int
+  names: [Name]
+}
+
+type EncounterVersionDetails {
+  rate: Int
+  version: Version
+}
+
+type PokemonEncounter {
+  pokemon: Pokemon
+  versionDetails: [VersionEncounterDetail]
+}
+
+type VersionEncounterDetail {
+  version: Version
+  maxChance: Int
+  encounterDetails: [Encounter]
+}
+
+type Encounter {
+  minLevel: Int
+  maxLevel: Int
+  conditionValues: [EncounterConditionValue]
+  chance: Int
+  method: EncounterMethod
+}
+
+type EncounterConditionValue {
+  id: Int
+  name: String
+  condition: EncounterCondition
+  names: [Name]
+}
+
+type EncounterCondition {
+  id: Int
+  name: String
+  names: [Name]
+  values: [EncounterConditionValue]
+}
+
+type Query {
+  encounterMethods: [EncounterMethod]
+  encounterMethod(id: Int): EncounterMethod
+  encounterConditions: [EncounterCondition]
+  encounterCondition(id: Int): EncounterCondition
+  encounterConditionValues: [EncounterConditionValue]
+  encounterConditionValue(id: Int): EncounterConditionValue
+}
