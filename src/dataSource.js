@@ -131,6 +131,12 @@ exports.PokeAPI = class PokeAPI extends RESTDataSource {
     this.getGenders = getAllResourcesFromIndex('gender', this.getGenderById.bind(this))
   }
 
+  willSendRequest (request) {
+    if (process.env.POKEAPI_STATIC) {
+      request.path += '/index.json'
+    }
+  }
+
   // Has unique URL structure for some reason
   async getPokemonEncountersById (id) {
     const response = await this.get(`/pokemon/${id}/encounters`)
