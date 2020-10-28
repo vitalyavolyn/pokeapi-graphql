@@ -3,7 +3,7 @@ const camelcaseKeys = require('camelcase-keys')
 const Bottleneck = require('bottleneck')
 const fetch = require('node-fetch')
 
-const { extractIdFromUrl } = require('./utils')
+const { extractIdFromUrl, isNameOnly } = require('./utils')
 
 const camelcase = (obj) => camelcaseKeys(obj, { deep: true })
 
@@ -15,8 +15,15 @@ function getResourceById (path) {
 }
 
 function getAllResourcesFromIndex (path, subFn) {
-  return async function () {
-    const { results } = await this.get(`/${path}/`, { limit: 5000 }) // TODO: is 5000 enough?
+  return async function (fieldNodes) {
+    const { results } = await this.get(`/${path}`, { limit: 5000 }) // TODO: is 5000 enough?
+
+    const onlyName = isNameOnly(fieldNodes)
+
+    if (onlyName && results?.[0]?.name) {
+      return results
+    }
+
     return Promise.all(results.map((t) => subFn(extractIdFromUrl(t.url))))
   }
 }

@@ -1,7 +1,7 @@
 const resolverByIdParam = (fn) => (_, { id }, { dataSources }) => dataSources.pokeAPI[fn](id)
 
 // TODO: invent Connections because this is very slow on large sets
-const resolverWithoutParams = (fn) => (_, __, { dataSources }) => dataSources.pokeAPI[fn]()
+const resolverWithoutParams = (fn) => (_, __, { dataSources }, { fieldNodes }) => dataSources.pokeAPI[fn](fieldNodes)
 
 module.exports = {
   Query: {

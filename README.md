@@ -8,7 +8,7 @@
 - [x] Support all API endpoints and types
 - [x] Check all missing properties in types
 - [ ] Change all lists to [connections](https://graphql.org/learn/pagination) for pagination.
-- [ ] Do not make additional API requests when requesting only `name` of NamedAPIResource
+- [x] Do not make additional API requests when requesting only `name` of NamedAPIResource
 - [ ] If possible, add an optional parameter for `Name`, `FlavorText` to specify language
 - [ ] Ability to search resources by `name` and not just `id` if `id` is `Int` (already possible in PokeAPI) (maybe just `union IdOrName = Int | String`)
 
